@@ -15,7 +15,7 @@ COPY src/Web/*/*.csproj /src/csproj-files/
 
 COPY . .
 WORKDIR /src/src/Web/WebMVC
-RUN dotnet add WebMVC.csproj package Instana.Profiler.Linux.Bundled.Refs --version 1.0.53.19
+RUN dotnet add WebMVC.csproj package Instana.Profiler.Linux.Bundled.Refs --version 1.0.53.23
 RUN dotnet publish -c Release -o /app
 
 FROM build AS publish
@@ -31,7 +31,7 @@ RUN apt-get update && apt-get install libc++1
 ENV CORECLR_ENABLE_PROFILING=1
 ENV CORECLR_PROFILER={cf0d821e-299b-5307-a3d8-b283c03916dd}
 ENV CORECLR_PROFILER_PATH=/app/instana_tracing/CoreProfiler.so
-
+ENV INSTANA_LOG_SPANS=1
 # Env-vars which point to the INSTANA agent. This is the endpoint the traced
 # application will call out to in order to get env-data and send traces.
 ENV INSTANA_AGENT_HOST=docker.for.win.localhost
