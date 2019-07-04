@@ -15,7 +15,7 @@ COPY src/Web/*/*.csproj /src/csproj-files/
 
 COPY . .
 WORKDIR /src/src/Services/Location/Locations.API
-RUN dotnet add Locations.API.csproj package Instana.Profiler.Linux.Bundled.Refs --version 1.0.53.19
+RUN dotnet add Locations.API.csproj package Instana.Profiler.Linux.Bundled.Refs --version 1.0.53.21
 RUN dotnet publish -c Release -o /app
 
 FROM build as functionaltest
